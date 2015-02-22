@@ -1,0 +1,28 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.jar
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Dependency directory
+node
+node_modules
+bower_components
+.bowerrc
+build
+target
+
+# Idea editors
+.idea
+*.iml
+*.project
+
+Plates/public/assets/bundle.js
+Plates/public/assets/components.js
