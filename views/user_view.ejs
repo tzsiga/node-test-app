@@ -7,12 +7,15 @@
 </head>
 <body>
 	<div class="container">
+
 		<h1>Hello EJS</h1>
 
-		<button id="user_button">Get da users</button>
-
-		<ul id="users">
-		</ul>
+		<button id="user_button" type="button" class="btn btn-default">Kik vannak a kocsmában?</button>
+		<div>
+			<br/>
+			<ul id="users" class="list-group">
+			</ul>			
+		</div>
 
 	</div>
 
@@ -20,16 +23,20 @@
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript">
-		$('#user_button').on('click', function () {
-			$.ajax({
-			  url: '/user/all',
-			  success: function (data) {
-			  	var users = JSON.parse(data);
 
-			  	for (var i = 0; i < users.length; i++) {
-			  		$('#users').append('<li>' + (users[i]).name + '</li>');
-			  	}
-			  }
+		$(document).ready(function () {
+
+			$('#user_button').on('click', function () {
+				$.ajax({
+					url: '/user/all',
+					success: function (data) {
+						users = data;
+
+						for (var i = 0; i < users.length; i++) {
+							$('#users').append('<li class="list-group-item">' + (users[i]).name + '</li>');
+						}
+					}
+				});
 			});
 
 		});
