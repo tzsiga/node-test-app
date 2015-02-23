@@ -12,7 +12,10 @@ var connection = mysql.createConnection({
 var getAllUsers = function () {
   return new Promise(function (resolve, reject) {
     connection.query('SELECT * FROM user', function (err, rows, fields) {
-      if (err) throw 'Database error: ' + err;
+      if (err) {
+        reject(new Error('Database error: ' + err));
+      }
+
       resolve(rows, fields);
     });
   });

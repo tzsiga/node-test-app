@@ -8,7 +8,7 @@ module.exports = function () {
 	// view response
 	router.get('/', function (req, res) {
 		res.set('Content-Type', 'text/html');
-		res.render('user_view', { buttonLabel: 'nyomjad meg' });
+		res.render('UserView', { buttonLabel: 'nyomjad meg' });
 	});
 
 	// data response
