@@ -26,7 +26,10 @@
 
 		document.addEventListener('DOMContentLoaded', function() {
 
-			$('#user_button').on('click', function () {
+      var $userButton = $('#user_button');
+      var $users = $('#users');
+
+      $userButton.on('click', function () {
 				$.ajax({
 					type: 'POST',
 					url: '/user/all',
@@ -35,9 +38,10 @@
 					console.log(data);
 					users = data;
 
+          $users.html('');
 					for (var i = 0; i < users.length; i++) {
 						var user = users[i];
-						$('#users').append('<li class="list-group-item">' + user['name'] + ' (' + user['age'] + ')</li>');
+            $users.append('<li class="list-group-item">' + user['name'] + ' (' + user['age'] + ')</li>');
 					}
 				});
 			});

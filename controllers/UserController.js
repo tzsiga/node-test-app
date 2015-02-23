@@ -1,27 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var Promise = require('bluebird');
-var mysql = require('mysql');
+var UserModel = require('../models/UserModel.js');
 
-module.exports = function() {
-
-	var connection = mysql.createConnection({
-		host: 'localhost',
-		user: 'root',
-		password: '',
-		database: 'node_test_db'
-	});
-
-	// async model function
-	var getAllUsers = function () {
-		return new Promise(function (resolve, reject) {
-			connection.query('SELECT * FROM user', function (err, rows, fields) {
-				if (err) throw 'Database error: ' + err;
-				resolve(rows, fields);
-			});
-		});
-	};
+module.exports = function () {
 
 	// view response
 	router.get('/', function (req, res) {
@@ -31,7 +13,7 @@ module.exports = function() {
 
 	// data response
 	router.post('/all', function (req, res) {
-		getAllUsers().then(function (rows, fields) {
+    UserModel.getAllUsers().then(function (rows, fields) {
 			res.set('Content-Type', 'application/json');
 			res.send(rows);
 		});
