@@ -52,6 +52,7 @@
   $postButton.on('click', function () {
     var nameValue = $('#NameTextbox').val();
     var ageValue = $('#AgeTextbox').val();
+
     $.post('/user/sendDataToDb', { name : nameValue, age : ageValue });
   });
 

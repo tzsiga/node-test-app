@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'GYM'
+  database: 'node_test_db'
 });
 
 // async model function
@@ -21,10 +21,11 @@ var getAllUsers = function () {
   });
 };
 
-function sendDataToDb (name, age) {
-    console.log(name, age);
-    var postData = { NAME : name, AGE: age };
-    //connection.query('INSERT INTO GYM SET ?', postData);
-  };
+var sendDataToDb = function (name, age) {
+  console.log(name, age);
+  var postData = { NAME : name, AGE: age };
+  //connection.query('INSERT INTO GYM SET ?', postData);
+};
 
 module.exports.getAllUsers = getAllUsers;
+module.exports.sendDataToDb = sendDataToDb;
