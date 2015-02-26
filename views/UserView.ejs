@@ -1,66 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>hello node</title>
-	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+  <title>hello node</title>
+  <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
 </head>
 <body>
-	<div class="container">
+  <div class="container">
 
-		<h1>Hello EJS</h1>
+    <h1>Hello EJS</h1>
 
-		<button id="user_button" type="button" class="btn btn-default">Kik vannak a kocsmában?</button>
-		<div>
-			<br/>
-			<ul id="users" class="list-group">
-			</ul>
-		</div>
-		Name: <input type="text" id="NameTextbox" />
-		Age: <input type="text" id="AgeTextbox" />
-		<button type="submit" id="postDataButton">Send Data to DB</button>
+    <button id="user_button" type="button" class="btn btn-default">Kik vannak a kocsmában?</button>
+    <div>
+      <br/>
+      <ul id="users" class="list-group">
+      </ul>
+    </div>
+    Name: <input type="text" id="NameTextbox" />
+    Age: <input type="text" id="AgeTextbox" />
+    <button type="submit" id="postDataButton">Send Data to DB</button>
+  </div>
 
+  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-	</div>
+  <script type="text/javascript">
 
-	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var $userButton = $('#user_button');
+    var $users = $('#users');
 
-	<script type="text/javascript">
+    $userButton.on('click', function () {
+      $.ajax({
+        type: 'POST',
+        url: '/user/all',
+        dataType: 'json'
+      }).done(function (data) {
+        console.log(data);
+        users = data;
 
-	document.addEventListener('DOMContentLoaded', function() {
+        $users.html('');
+        for (var i = 0; i < users.length; i++) {
+          var user = users[i];
+          $users.append('<li class="list-group-item">' + user['NAME'] + ' (' + user['AGE'] + ')</li>');
+        }
+      });
+    });
+  });
 
-      	var $userButton = $('#user_button');
-      	var $users = $('#users');
+  var $postButton = $('#postDataButton');
+  $postButton.on('click', function () {
+    var nameValue = $('#NameTextbox').val();
+    var ageValue = $('#AgeTextbox').val();
+    $.post('/user/sendDataToDb', { name : nameValue, age : ageValue });
+  });
 
-        $userButton.on('click', function () {
-				$.ajax({
-					type: 'POST',
-					url: '/user/all',
-					dataType: 'json'
-				}).done(function (data) {
-					console.log(data);
-					users = data;
-
-          	$users.html('');
-					for (var i = 0; i < users.length; i++) {
-						var user = users[i];
-            			$users.append('<li class="list-group-item">' + user['NAME'] + ' (' + user['AGE'] + ')</li>');
-					}
-			});
-		});
-	});
-
-
-	var $postButton = $('#postDataButton');
-	$postButton.on('click', function () {
-  		var nameValue = $('#NameTextbox').val();
-		var ageValue = $('#AgeTextbox').val();
-		$.post('/user/sendDataToDb', { name : nameValue, age : ageValue });
-	});
-
-
-
-	</script>
+  </script>
 </body>
 </html>
