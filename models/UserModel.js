@@ -5,13 +5,13 @@ var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'node_test_db'
+  database: 'GYM'
 });
 
 // async model function
 var getAllUsers = function () {
   return new Promise(function (resolve, reject) {
-    connection.query('SELECT * FROM user', function (err, rows, fields) {
+    connection.query('SELECT * FROM USER', function (err, rows, fields) {
       if (err) {
         reject(new Error('Database error: ' + err));
       }
@@ -20,5 +20,11 @@ var getAllUsers = function () {
     });
   });
 };
+
+function sendDataToDb (name, age) {
+    console.log(name, age);
+    var postData = { NAME : name, AGE: age };
+    //connection.query('INSERT INTO GYM SET ?', postData);
+  };
 
 module.exports.getAllUsers = getAllUsers;
