@@ -9,7 +9,7 @@
 </head>
 <body>
   <div id="navbarDiv">
-    <nav class="navbar navbar-default" role="navigation">
+    <nav id="navNav" class="navbar navbar-default" role="navigation">
        <div class="navbar-header">
 
           <h5>GYM WORKOUT LOGGER</h5>
@@ -19,13 +19,13 @@
   </div>
 
   <div id="mainContentDiv">
-    <div ng-view>
+    <div id="ng-viewDiv" ng-view>
 
     </div>
   </div>
 
   <div id="footerDiv" class="container footerDivClass">
-    <nav class="navbar navbar-default navbar-fixed-bottom">
+    <nav id="footerNav" class="navbar navbar-default navbar-fixed-bottom">
         <div class="navbar-inner navbar-content-center">
             <div class="col-xs-3 footerElement" >
               <a href="#workout01"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
@@ -48,5 +48,25 @@
   <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
   <script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
   <script type="text/javascript" src="../Angular/angularViews.js"></script>
+
+  <script type="text/javascript">
+
+  $(document).ready(function () {
+
+    var windowHeight = window.innerHeight;
+    var body = $(document.body);
+    body.css("height", windowHeight);
+    console.log(windowHeight);
+
+    var navbarHeight = $('#navNav').height();
+    var footerHeight = $('#footerNav').height();
+    var workoutPagesHeight = windowHeight - navbarHeight - footerHeight;
+    console.log(workoutPagesHeight);
+    var workout0 = $('#workout0').height();
+    console.log(workout0);
+
+  });
+
+  </script>
 </body>
 </html>

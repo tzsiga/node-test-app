@@ -1,3 +1,7 @@
+body {
+	height: 100%;
+}
+
 div.container {
 	padding: 0px;
 }
@@ -5,6 +9,8 @@ div.container {
 .navbar {
 	min-height: 20px;
 	text-align: center;
+	padding: 0px;
+	margin-bottom: 0px;	
 }
 
 .navbar-header {
@@ -16,6 +22,10 @@ div.container {
 	height: 30px;
 }
 
+h2.ng-binding {
+	margin-top: 0px;
+}
+
 #footerDiv {
 	background: rgba(0, 0, 0, 0.5);
 }
@@ -25,4 +35,24 @@ div.container {
 	border-color: gray;
 	padding: 14px;
 	text-align: center;
+}
+
+#mainContentDiv {
+	min-height: 100%;
+}
+
+#ng-viewDiv {
+	min-height: 100%;
+}
+
+#workout0 {
+	background-color: red;
+}
+
+#workout01 {
+	background-color: blue;
+}
+
+span.glyphicon {
+	font-size: 1.5em;
 }
