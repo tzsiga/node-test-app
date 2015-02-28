@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'node_test_db'
+  database: 'GYM'
 });
 
 // async model function
@@ -24,7 +24,7 @@ var getAllUsers = function () {
 var sendDataToDb = function (name, age) {
   console.log(name, age);
   var postData = { NAME : name, AGE: age };
-  //connection.query('INSERT INTO GYM SET ?', postData);
+  connection.query('INSERT INTO USER SET ?', postData);
 };
 
 module.exports.getAllUsers = getAllUsers;

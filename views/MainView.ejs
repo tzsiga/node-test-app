@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="workoutApp">
+<head>
+  <title>hello node</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="../Css/gymtheme.css">
+</head>
+<body>
+  <div id="navbarDiv">
+    <nav class="navbar navbar-default" role="navigation">
+       <div class="navbar-header">
+
+          <h5>GYM WORKOUT LOGGER</h5>
+       </div>
+    </nav>
+
+  </div>
+
+  <div id="mainContentDiv">
+    <div ng-view>
+
+    </div>
+  </div>
+
+  <div id="footerDiv" class="container footerDivClass">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="navbar-inner navbar-content-center">
+            <div class="col-xs-3 footerElement" >
+              <a href="#workout01"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+            </div>
+            <div class="col-xs-3 footerElement" >
+              <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+            </div>
+            <div class="col-xs-3 footerElement" >
+              <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+            </div>
+            <div class="col-xs-3 footerElement" >
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            </div>
+        </div>
+    </nav>
+</div>
+
+  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="../Angular/angularViews.js"></script>
+</body>
+</html>

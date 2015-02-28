@@ -1,0 +1,28 @@
+div.container {
+	padding: 0px;
+}
+
+.navbar {
+	min-height: 20px;
+	text-align: center;
+}
+
+.navbar-header {
+	text-align: center;
+}
+
+.navbar-brand {
+	padding: 4px;
+	height: 30px;
+}
+
+#footerDiv {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.footerElement {
+	border: 1px solid;
+	border-color: gray;
+	padding: 14px;
+	text-align: center;
+}
