@@ -5,6 +5,7 @@
 		});
 
 		workoutApp.controller('workout01Controller', function ($scope) {
+			$scope.title = "1. Excercise"
 			$scope.message = "workout01 page";
 		});
 
