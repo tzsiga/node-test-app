@@ -22,7 +22,7 @@
 			<thead>
 				<tr>
 					<td>SETS</td>
-					<td>REPSxKGs</td>
+					<td>REPS x KGs</td>
 					<td>REMOVE</td>
 				</tr>	
 			</thead>
@@ -83,26 +83,22 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><button id="increaseKgBtn" class="btn btn-default btn-flat buttonSetter"><h4><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></h4><div class="ripple-wrapper"></div></button></td>
-					<td><button id="increaseRepBtn" class="btn btn-default btn-flat buttonSetter"><h4><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></h4><div class="ripple-wrapper"></div></button></td>
+					<td><button id="increaseKgBtn" ng-click="increaseKgBtn()" class="btn btn-default btn-flat buttonSetter"><h4><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></h4><div class="ripple-wrapper"></div></button></td>
+					<td><button id="increaseRepBtn" ng-click="increaseRepBtn()" class="btn btn-default btn-flat buttonSetter"><h4><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></h4><div class="ripple-wrapper"></div></button></td>
 				</tr>
 				<tr>
 <!-- 					<td id="setSetterRow"><h4 id="setKgH4" ng-bind="newKg">80</h4></td>
 					<td id="setSetterRow"><h4 id="setRepH4" ng-bind="newRep">12</h4></td> -->
-					<td><input id="setKgH4" type="text" class="form-control" ng-model="newKg"></td>
-					<td><input id="setRepH4" type="text" class="form-control" ng-model="newRep"></td>
+					<td><input id="setKgH4" type="text" class="form-control kgRepInput" ng-model="newKg"></td>
+					<td><input id="setRepH4" type="text" class="form-control kgRepInput" ng-model="newRep"></td>
 				</tr>
 				<tr>
-					<td><button id="decreaseKgBtn" class="btn btn-default btn-flat buttonSetter"><h4><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></h4><div class="ripple-wrapper"></div></button></td>
-					<td><button id="decreaseRepBtn" class="btn btn-default btn-flat buttonSetter"><h4><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></h4><div class="ripple-wrapper"></div></button></td>
+					<td><button id="decreaseKgBtn" ng-click="decreaseKgBtn()" class="btn btn-default btn-flat buttonSetter"><h4><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></h4><div class="ripple-wrapper"></div></button></td>
+					<td><button id="decreaseRepBtn" ng-click="decreaseRepBtn()" class="btn btn-default btn-flat buttonSetter"><h4><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></h4><div class="ripple-wrapper"></div></button></td>
 				</tr>
 			</tbody>	
 		</table>
 	</div>
-
-	<script type="text/javascript">
-		kgRepButtonSetter();
-	</script>
 
 	<div id="workoutButtons" class="col-xs-12">
 		<button class="btn btn-primary btn-material-orange-600 workoutLowerButtons" ng-click="addItem()">ADD SET<div class="ripple-wrapper"></div></button>

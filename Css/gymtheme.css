@@ -79,13 +79,26 @@ div#ng-viewDiv.ng-scope {
 }
 
 #workout0 {
-	background-color: red;
-	min-height: 400px;
+	text-align: center;
+}
+
+#workout0Title {
+	padding-top: 15%;
+	padding-bottom: 10%;
+}
+
+#workoutChooserDiv {
+
 }
 
 #workout01TitleBar {
 	text-align: center;
 }	
+
+.workoutChooserBtn {
+	margin-top: 10%;
+	margin-bottom: 8%;
+}
 
 #workout01Sets {
 	text-align: center;
@@ -136,10 +149,34 @@ div#ng-viewDiv.ng-scope {
 
 #repKgSetterTable {
 	margin-bottom: 5%;
+	text-align: center;
 }
 
 .workoutLowerButtons {
 	margin: 0px;
+}
+
+.kgRepInput {
+	display:inline-block;
+	text-align: center;
+	max-width: 25%;
+}
+
+#workoutButtons {
+	position: fixed;
+	bottom: 10%;
+	z-index: 100;
+	padding-top: 4%;
+
+
+	background: rgba(246,41,14,0.82);
+	background: -moz-linear-gradient(top, rgba(246,41,14,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(240,50,25,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(237,237,237,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(246,41,14,0.82)), color-stop(0%, rgba(237,237,237,0.82)), color-stop(0%, rgba(240,50,25,0.82)), color-stop(0%, rgba(237,237,237,0.82)), color-stop(100%, rgba(237,237,237,1)));
+	background: -webkit-linear-gradient(top, rgba(246,41,14,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(240,50,25,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(237,237,237,1) 100%);
+	background: -o-linear-gradient(top, rgba(246,41,14,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(240,50,25,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(237,237,237,1) 100%);
+	background: -ms-linear-gradient(top, rgba(246,41,14,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(240,50,25,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(237,237,237,1) 100%);
+	background: linear-gradient(to bottom, rgba(246,41,14,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(240,50,25,0.82) 0%, rgba(237,237,237,0.82) 0%, rgba(237,237,237,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6290e', endColorstr='#ededed', GradientType=0 );
 }
 
 span.glyphicon {

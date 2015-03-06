@@ -37,37 +37,34 @@ function startSessionTimer () {
 
 function kgRepButtonSetter () {
 
-  document.getElementById("increaseKgBtn").addEventListener("click", increaseKg);
-  function increaseKg () {
-    var actualKg = parseFloat($('#setKgH4').val());
-    actualKg = actualKg + 2.5;
-    $('#setKgH4').val(actualKg);
-    $("#setKgH4").bind('select change ', function(){
-        console.log("input changed");
-    });
-  }
+  // document.getElementById("increaseKgBtn").addEventListener("click", increaseKg);
+  // function increaseKg () {
+  //   var actualKg = parseFloat($('#setKgH4').val());
+  //   actualKg = actualKg + 2.5;
+  //   $('#setKgH4').val(actualKg);
+  // }
 
-  document.getElementById("decreaseKgBtn").addEventListener("click", decreaseKg);
-  function decreaseKg () {
-    var actualKg = parseFloat($('#setKgH4').val());
-    actualKg = actualKg - 2.5;
-    $('#setKgH4').val(actualKg);
-    $("#setKgH4").on("input change", function() { });
-  }
+  // document.getElementById("decreaseKgBtn").addEventListener("click", decreaseKg);
+  // function decreaseKg () {
+  //   var actualKg = parseFloat($('#setKgH4').val());
+  //   actualKg = actualKg - 2.5;
+  //   $('#setKgH4').val(actualKg);
+  //   $("#setKgH4").on("input change", function() { });
+  // }
 
-  document.getElementById("increaseRepBtn").addEventListener("click", increaseRep);
-  function increaseRep () {
-    var actualRep = parseFloat($('#setRepH4').val());
-    actualRep = actualRep + 1;
-    $('#setRepH4').val(actualRep);
-  }
+  // document.getElementById("increaseRepBtn").addEventListener("click", increaseRep);
+  // function increaseRep () {
+  //   var actualRep = parseFloat($('#setRepH4').val());
+  //   actualRep = actualRep + 1;
+  //   $('#setRepH4').val(actualRep);
+  // }
 
-  document.getElementById("decreaseRepBtn").addEventListener("click", decreaseRep);
-  function decreaseRep () {
-    var actualRep = parseFloat($('#setRepH4').val());
-    actualRep = actualRep - 1;
-    $('#setRepH4').val(actualRep);
-  }
+  // document.getElementById("decreaseRepBtn").addEventListener("click", decreaseRep);
+  // function decreaseRep () {
+  //   var actualRep = parseFloat($('#setRepH4').val());
+  //   actualRep = actualRep - 1;
+  //   $('#setRepH4').val(actualRep);
+  // }
 
   // document.getElementById("increaseKgBtn").addEventListener("click", increaseKg);
   // function increaseKg () {
