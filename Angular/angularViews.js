@@ -4,9 +4,33 @@
 			$scope.message = "Main page";
 		});
 
-		workoutApp.controller('workout01Controller', function ($scope) {
-			$scope.title = "1. Excercise"
-			$scope.message = "workout01 page";
+		workoutApp.controller("workout01Controller", function ($scope) {
+
+			var setId = 1;
+
+		    $scope.items = [];
+
+		    $scope.addItem = function () {
+
+		        $scope.items.push({
+		        	setId: setId,
+		            kgs: $scope.newRep,
+		            reps: $scope.newKg
+		        });
+		        console.log(setId);
+		        setId++;
+		    };
+
+		    $scope.removeItem = function (setID) {
+		    	console.log("torlendo set: " + setID);
+		    	var index = $scope.items.indexOf(setID);
+		    	console.log("tombben a " + index + " helyen van");
+		    	$scope.items.splice(index, 1);
+		    	if(setId > 1) {
+		    		setId--;
+		    	}
+
+		    }
 		});
 
 	    workoutApp.config(function($routeProvider) {

@@ -45,15 +45,23 @@ h2.ng-binding {
 }
 
 .col-xs-3.footerElement {
-	border: 1px solid;
+	border: 0px solid;
 	border-color: gray;
-	padding: 8px;
+	padding: 0px;
 	text-align: center;
 	/*background: #6EFF4C;*/
 }
 
 .footerText {
 	font-size: 0.7em;
+	margin: 0px;
+}
+
+.footerButton {
+	padding-top: 8%;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 8%; 
 	margin: 0px;
 }
 
@@ -65,21 +73,52 @@ div#ng-viewDiv.ng-scope {
 	min-height: 100%;
 }
 
+#sessionTimeDiv {
+	text-align: center;
+	color: #ff6d00;
+}
+
 #workout0 {
 	background-color: red;
 	min-height: 400px;
 }
 
-#workout01 {
-	background-color: blue;
-}
-
 #workout01TitleBar {
 	text-align: center;
-}
+}	
 
 #workout01Sets {
 	text-align: center;
+}
+
+#workoutTypeText {
+	padding-left: 10%;
+	font-size: 1.4em; 
+	max-width: 60%; 
+	float:left; 
+	padding-top:0%;
+}
+
+#workout01Sets > table {
+	margin-bottom: 5px;
+}
+
+.setRemoveButton {
+	padding: 0px;
+	margin: 0px;
+}
+
+.btn-primary.btn-flat:not(.btn-link) {
+	color: red;
+}
+
+.buttonSetter{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 25%;
+	padding-right: 25%;
 }
 
 #setSetterRow {
@@ -87,6 +126,19 @@ div#ng-viewDiv.ng-scope {
 }
 
 #setSetterHeader {
+	margin: 0px;
+}
+
+#setSetterTd {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+#repKgSetterTable {
+	margin-bottom: 5%;
+}
+
+.workoutLowerButtons {
 	margin: 0px;
 }
 
@@ -98,4 +150,8 @@ span.glyphicon {
 	font-size: 1.3em;
 	float:right;
 	z-index: 100;
+}
+
+#workout01AddSetSettings > div > div > div {
+	min-height: 150px;
 }

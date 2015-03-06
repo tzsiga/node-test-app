@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap-material-design/dist/css/ripples.min.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap-material-design/dist/css/material-wfont.min.css">
+
   <!-- <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"> -->
   <link rel="stylesheet" type="text/css" href="../Css/gymtheme.css">
 </head>
@@ -30,16 +31,16 @@
     <nav id="footerNav" class="navbar navbar-default navbar-fixed-bottom">
         <div class="navbar-inner navbar-content-center">
             <div class="col-xs-3 footerElement" >
-              <a href="#workout01"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><p class="footerText">Add workout</p></a>
+              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><p class="footerText">Add workout</p><div class="ripple-wrapper"></div></a>
             </div>
             <div class="col-xs-3 footerElement" >
-              <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><p class="footerText">Calendar</p>
+              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><p class="footerText">Calendar</p><div class="ripple-wrapper"></div></a>
             </div>
             <div class="col-xs-3 footerElement" >
-              <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span><p class="footerText">Calculator</p>
+              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span><p class="footerText">Calculator</p><div class="ripple-wrapper"></div></a>
             </div>
             <div class="col-xs-3 footerElement" >
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span><p class="footerText">Profile</p>
+              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><p class="footerText">Profile</p><div class="ripple-wrapper"></div></a>
             </div>
         </div>
     </nav>
@@ -49,11 +50,27 @@
   <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
   <script type="text/javascript" src="../bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+  <script type="text/javascript" src="../bower_components/nouislider/distribute/jquery.nouislider.all.min.js"></script>
   <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
   <script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
   <script type="text/javascript" src="../Angular/angularViews.js"></script>
+  <script type="text/javascript" src="../javascript/workoutScript.js"></script>
 
   <script type="text/javascript">
+
+  function noUiLoader() {
+    $.material.init();
+    $(".svert").noUiSlider({
+      orientation: "vertical",
+      start: 40,
+      connect: "lower",
+      range: {
+        min: 0,
+        max: 100
+      }
+    });
+  };
+
 
   $(document).ready(function () {
 
@@ -71,11 +88,6 @@
 
   });
 
-  </script>
-  <script>
-    $(document).ready(function() {
-        $.material.init();
-    });
   </script>
 </body>
 </html>

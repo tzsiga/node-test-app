@@ -1,0 +1,51 @@
+Nokia meeting:
+
+- windows, linux server --> 
+- PostgreSQL relational database
+- JIRA for the project
+
+
+- Articles: if there is not an article, only tips with URLs, if the article on a separate page is note mobile friendly (responsible) it will look bad for example on a mobile device/tablet
+
+
+- Database: do not over engineer before everything --> mainly the basics
+
+
+I. PHASE
+Functions:
+- Articles: 
+	- HR write it twice
+	- HR will use this tool
+	- Hack the text from the already used tool
+	- Pocket tool hacking
+- Tips: 
+	- ranking
+	- favouriting
+
+- leadership "cards": fancy multi layered menu
+- Self-evaluation: 
+- Wheel: one big dynamic calendar for every event
+	- static calendar or dynamic??? can the user do something with it, or just show something?
+	- is it editable or not?
+	- merge with the calendars, view options for official and private
+- Survey, polls:
+	- about the application, is it long or not? if it is long we need a separate page, comments --> be on the main page
+- ADMIN page: only desktop resolution, no mobile
+
+NON-Functional:
+- optimize what kind of devies are used, collect metadata about the devices and browsers for later optimization.
+- Resolution: 3 resolutions: small, medium and desktop
+- performance issues -->  WorxWeb browser performance??? its webkit based
+- 
+
+- Create a Wiki page
+- First use Bitbucket, and after the servers are ready, we use our own internal git servers
+- Backend:
+	- microservices
+	- for the next 2 weeks, maybe apache or nodejs
+
+- NEXT 1 weeks tasks (mini-sprint):
+	1. Zsiga: setup source control bitbucket, create a skeleton/mockup page, widgets, CSS design, grid system. Getting test devices.
+	2. Miklós: tomorrow (friday) client environment finish, testing system from college, work with Nicola on the service. 
+	3. Nicola: design the webservice interfaces
+	4. Peter: How the authentication service works, API, documentation? .firewall/domain problem, test devices how to connect to the server? maybe public cloud for testing?
