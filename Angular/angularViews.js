@@ -25,6 +25,7 @@ workoutApp.service('excerciseService', function() {
 	else {
 		//if the max excercise id is equal to the currently viewed, there is no more opened excercises
 		if( excerciseCounter == currentlyViewedExcerciseID ) {
+			console.log("elso feltetel");
 			//save the current sets
 			excerciseContainer.push({
 				key: excerciseCounter,
@@ -35,7 +36,20 @@ workoutApp.service('excerciseService', function() {
 			currentlyViewedExcerciseID = excerciseCounter;
 
 		}
+		else if ( excerciseCounter > currentlyViewedExcerciseID ) {
+			console.log("masodik feltetel");
+			//save the current sets
+			excerciseContainer.push({
+				key: currentlyViewedExcerciseID,
+				value: items
+			});
+			//load the already saved sets for the next excercise
+			scopeList = [];
+			scopeList = excerciseContainer[currentlyViewedExcerciseID].value;
+			currentlyViewedExcerciseID++;
+		}
 		else {
+			console.log("harmadik feltetel");
 			//save the current sets
 			excerciseContainer.push({
 				key: currentlyViewedExcerciseID,
@@ -99,7 +113,7 @@ workoutApp.controller('mainController', function ($scope) {
 
 workoutApp.controller("workout01Controller", function ($scope, excerciseService) {
 
-	$scope.excerciseId = excerciseCounter;
+	$scope.excerciseId = currentlyViewedExcerciseID;
 	$scope.items = [];
 	$scope.items = excerciseService.getScopeList();
 
