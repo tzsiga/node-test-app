@@ -30,17 +30,20 @@
   <div id="footerDiv" class="container footerDivClass">
     <nav id="footerNav" class="navbar navbar-default navbar-fixed-bottom">
         <div class="navbar-inner navbar-content-center">
-            <div class="col-xs-3 footerElement" >
-              <a class="btn btn-primary footerButton" href="#workout0"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><p class="footerText">Add workout</p><div class="ripple-wrapper"></div></a>
+          <div class="footerElement" >
+              <a class="btn btn-primary footerButton" href="#mainpage"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><p class="footerText" style="font-size:0.8em; padding-right: 5px;">Home</p><div class="ripple-wrapper"></div></a>
             </div>
-            <div class="col-xs-3 footerElement" >
-              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><p class="footerText">Calendar</p><div class="ripple-wrapper"></div></a>
+            <div class="footerElement" >
+              <a class="btn btn-primary footerButton" href="#workout0"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><p class="footerText" style="font-size:0.8em;">Workout</p><div class="ripple-wrapper"></div></a>
             </div>
-            <div class="col-xs-3 footerElement" >
-              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span><p class="footerText">Calculator</p><div class="ripple-wrapper"></div></a>
+            <div class="footerElement" >
+              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><p class="footerText" style="font-size:0.8em;">Calendar</p><div class="ripple-wrapper"></div></a>
             </div>
-            <div class="col-xs-3 footerElement" >
-              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><p class="footerText">Profile</p><div class="ripple-wrapper"></div></a>
+            <div class="footerElement" >
+              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span><p class="footerText" style="font-size:0.8em;">Calculate</p><div class="ripple-wrapper"></div></a>
+            </div>
+            <div class="footerElement" >
+              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><p class="footerText" style="font-size:0.8em;">Profile</p><div class="ripple-wrapper"></div></a>
             </div>
         </div>
     </nav>
@@ -76,7 +79,7 @@
 
     var windowHeight = window.innerHeight;
     var body = $(document.body);
-    body.css("height", windowHeight);
+    body.css("height", windowHeight-40);
     console.log(windowHeight);
 
     var navbarHeight = $('#navNav').height();
