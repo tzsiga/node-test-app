@@ -2424,6 +2424,38 @@ function showDetailedStats() {
 
 }
 
+function reDrawChart() {
+	var chart = AmCharts.makeChart("chartdiv", {
+	    "type": "pie",
+		"theme": "light",
+		"labelText": "[[title]]: [[value]]",
+		"labelRadius": -35,
+		"fontSize": 13,
+		"radius": 130,
+	    "dataProvider": [
+	{
+	        "type": "Protein",
+	        "amount": Math.round((0.4 * parseInt(document.getElementById("bmrIndex").innerHTML))/4)
+	    },
+	{
+	        "type": "Carbohydrate",
+	        "amount": Math.round((0.4 * parseInt(document.getElementById("bmrIndex").innerHTML))/4)
+	    }, {
+	        "type": "Fat",
+	        "amount": Math.round((0.2 * parseInt(document.getElementById("bmrIndex").innerHTML))/9)
+	    }],
+	    "valueField": "amount",
+	    "titleField": "type",
+		"exportConfig":{	
+	      menuItems: [{
+	      icon: '/lib/3/images/export.png',
+	      format: 'png'	  
+	      }]  
+		}
+	});
+}
+
+
 function startSessionTimer () {
 
     var h1 = $('#sessionTimeH5').text(),
@@ -2499,6 +2531,7 @@ var allKgs = 0;
 var allReps = 0;
 //----------------------------------------------------------
 //ANGULAR DIRECTIVES
+
 
 
 //----------------------------------------------------------
@@ -2650,6 +2683,19 @@ workoutApp.controller('mainController', function ($scope) {
 	$scope.workoutChooser = "Chose your workout type";
 });
 
+workoutApp.controller('calculatorController', function ($scope) {
+
+	$scope.hello = "valami";
+
+	var kg = parseInt($scope.Kg);
+	var height = parseInt($scope.Height);
+	var age = parseInt($scope.Age);
+	console.log(kg);
+	console.log(height);
+
+	$scope.defaultCalorieIntake = 10 * kg + 6.25 * height - 5 * age + 5;
+});
+
 
 workoutApp.controller("workout01Controller", function ($scope, $location, excerciseService) {
 
@@ -2659,6 +2705,7 @@ workoutApp.controller("workout01Controller", function ($scope, $location, excerc
 	$scope.sessionTime = sessionTimerGlobal;
 	$scope.allKgs = allKgs;
 	$scope.allReps = allReps;
+	$scope.burnedCalories = 0;
 	$scope.items = excerciseService.getScopeList();
 
 	$scope.goForwardToExcercise = function () {
@@ -2804,5 +2851,9 @@ $routeProvider
     .when('/workoutresult', {
         templateUrl : '../views/workoutresult.html',
         controller  : 'workout01Controller'
+    })
+    .when('/calculator', {
+        templateUrl : '../views/calculator.html',
+        controller  : 'calculatorController'
     });
 });

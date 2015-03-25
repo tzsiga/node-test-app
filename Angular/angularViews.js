@@ -15,6 +15,7 @@ var allReps = 0;
 //ANGULAR DIRECTIVES
 
 
+
 //----------------------------------------------------------
 //ANGULAR SERVICES
 workoutApp.service('excerciseService', function() {
@@ -164,6 +165,19 @@ workoutApp.controller('mainController', function ($scope) {
 	$scope.workoutChooser = "Chose your workout type";
 });
 
+workoutApp.controller('calculatorController', function ($scope) {
+
+	$scope.hello = "valami";
+
+	var kg = parseInt($scope.Kg);
+	var height = parseInt($scope.Height);
+	var age = parseInt($scope.Age);
+	console.log(kg);
+	console.log(height);
+
+	$scope.defaultCalorieIntake = 10 * kg + 6.25 * height - 5 * age + 5;
+});
+
 
 workoutApp.controller("workout01Controller", function ($scope, $location, excerciseService) {
 
@@ -173,6 +187,7 @@ workoutApp.controller("workout01Controller", function ($scope, $location, excerc
 	$scope.sessionTime = sessionTimerGlobal;
 	$scope.allKgs = allKgs;
 	$scope.allReps = allReps;
+	$scope.burnedCalories = 0;
 	$scope.items = excerciseService.getScopeList();
 
 	$scope.goForwardToExcercise = function () {
@@ -318,5 +333,9 @@ $routeProvider
     .when('/workoutresult', {
         templateUrl : '../views/workoutresult.html',
         controller  : 'workout01Controller'
+    })
+    .when('/calculator', {
+        templateUrl : '../views/calculator.html',
+        controller  : 'calculatorController'
     });
 });

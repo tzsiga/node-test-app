@@ -47,6 +47,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('watch', function() {
+    gulp.watch('Angular/*.js', ['scripts']);
     gulp.watch('javascript/*.js', ['scripts']);
     gulp.watch('Css/*.css', ['css']);
 });

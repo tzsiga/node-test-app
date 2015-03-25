@@ -46,36 +46,21 @@
               <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><p class="footerText" style="font-size:0.8em;">Calendar</p><div class="ripple-wrapper"></div></a>
             </div>
             <div class="footerElement" >
-              <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span><p class="footerText" style="font-size:0.8em;">Calculate</p><div class="ripple-wrapper"></div></a>
+              <a class="btn btn-primary footerButton" href="#calculator"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span><p class="footerText" style="font-size:0.8em;">Calculate</p><div class="ripple-wrapper"></div></a>
             </div>
             <div class="footerElement" >
               <a class="btn btn-primary footerButton" href="#workout01"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><p class="footerText" style="font-size:0.8em;">Profile</p><div class="ripple-wrapper"></div></a>
             </div>
         </div>
     </nav>
+
 </div>
 
 <!-- GULP BUILD JAVASCRIPT FILES -->
 <script type="text/javascript" src="../dist/all.js"></script>
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/light.js"></script>
 
-<script type="text/javascript">
-
-  $(document).ready(function () {
-
-    var windowHeight = window.innerHeight;
-    var body = $(document.body);
-    body.css("height", windowHeight-40);
-    console.log(windowHeight);
-
-    var navbarHeight = $('#navNav').height();
-    var footerHeight = $('#footerNav').height();
-    var workoutPagesHeight = windowHeight - navbarHeight - footerHeight;
-    console.log(workoutPagesHeight);
-    var workout0 = $('#workout0').height();
-    console.log(workout0);
-
-  });
-
-</script>
 </body>
 </html>

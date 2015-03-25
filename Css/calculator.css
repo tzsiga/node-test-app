@@ -1,0 +1,42 @@
+#calculatorContainer {
+	text-align: center;
+	padding-top: 30px;
+}
+
+
+#calculatorInputs {
+	
+}
+
+#calculatorInputs > input {
+	max-width: 70%;
+	margin: 0 auto;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+
+#calculatorResult {
+	text-align: center;
+}
+
+#chartdiv {
+	width		: 100%;
+	height		: 300px;
+	font-size	: 11px;
+}

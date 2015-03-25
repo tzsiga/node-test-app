@@ -1,0 +1,73 @@
+<div id="calculatorContainer" ng-controller="calculatorController">
+	<div id="calculatorInputs" class="col-xs-12">
+		<input id="calcKg" class="form-control" onchange="reDrawChart()" type="text" ng-model="Kg" placeholder="Your body weight in kg" /> <br>
+		<input id="calcAge" class="form-control" onchange="reDrawChart()" type="text" ng-model="Age" placeholder="Your age in year" /> <br>
+		<input id="calcHeight" class="form-control" onchange="reDrawChart()" type="text" ng-model="Height" placeholder="Your height in cm" /> <br>
+	</div>
+	
+	<div id="calculatorResult" class="col-xs-12">
+		Your Basic Metabolic Rate (BMR) is <br>
+
+		<h4>{{ 10 * Kg + 6.25 * Height - 5 * Age  }} kcal </h4>
+		<p id="bmrIndex" style="display:none">{{ 10 * Kg + 6.25 * Height - 5 * Age  }}</p>
+
+
+		<table class="table table-striped table-condensed">
+			<thead>
+				<tr>
+					<td>EXCERSICE LEVEL</td>
+					<td>NEEDED CALORIE</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>LOW</td>
+					<td>{{ 1.2 * (10 * Kg + 6.25 * Height - 5 * Age)  }} kcal</td>
+				</tr>
+				<tr>
+					<td>MEDIUM</td>
+					<td>{{ 1.375 * (10 * Kg + 6.25 * Height - 5 * Age)  }} kcal</td>
+				</tr>
+								<tr>
+					<td>HIGH</td>
+					<td>{{ 1.55 * (10 * Kg + 6.25 * Height - 5 * Age)  }} kcal</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="chartdiv"></div>
+	
+</div>
+<script type="text/javascript">
+	var chart = AmCharts.makeChart("chartdiv", {
+	    "type": "pie",
+		"theme": "light",
+		"labelText": "[[title]]: [[value]]",
+		"labelRadius": -35,
+		"fontSize": 13,
+		"radius": 130,
+	    "dataProvider": [
+	{
+	        "type": "Protein",
+	        "amount": 0
+	    },
+	{
+	        "type": "Carbohydrate",
+	        "amount": 0
+	    }, {
+	        "type": "Fat",
+	        "amount": 0
+	    }],
+	    "valueField": "amount",
+	    "titleField": "type",
+		"exportConfig":{	
+	      menuItems: [{
+	      icon: '/lib/3/images/export.png',
+	      format: 'png'	  
+	      }]  
+		}
+	});
+
+
+</script>
