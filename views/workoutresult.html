@@ -1,0 +1,33 @@
+<div id="workoutResultContainer">
+	<div id="workoutResultTime">
+		<h5>Your workout session has last:</h5>
+		<h1><i class="fa fa-clock-o"></i>  {{ sessionTime | split:' ':2 }} </h1>
+	</div>
+
+	<div id="workoutResultKgRep">
+		<div>
+			<h3> All kgs: {{ allKgs }}</h3>
+			<h3>All reps: {{ allReps }}</h3>
+		</div>
+
+	</div>
+	<div id="workoutResultDetailedStat">
+
+		<button onclick="showDetailedStats()" id="workoutResultShowBtn" class="btn btn-primary btn-material-amber-700 btn-raised workoutChooserBtn">
+		<h4>SHOW DETAILS</h4><div class="ripple-wrapper"></div></button>
+
+		<div id="workoutResultSets" ng-repeat="set in workoutResult">
+			<div ng-repeat="s in set">
+				<table class="table table-striped table-condensed">
+					<tbody>
+						<tr ng-repeat="v in s">
+							<td>{{ v.kgs }}x{{ v.reps }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+</div>

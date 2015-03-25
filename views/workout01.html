@@ -5,7 +5,7 @@
 			<form action="#workout01">
 				<button class="btn btn-fab btn-fab-mini btn-raised btn-sm btn-material-green" style="float:left; z-index:5;" 
 				ng-click="goBackToLastExcercise()">
-				<i class="mdi-navigation-arrow-back"></i>
+				<i class="fa fa-arrow-left"></i>
 				<div class="ripple-wrapper"></div>
 				</button>
 			</form>
@@ -16,7 +16,7 @@
 			<form action="#workout01">
 				<button class="btn btn-fab btn-fab-mini btn-raised btn-sm btn-material-red" style="float:right; z-index:5;" 
 				ng-click="goForwardToExcercise()">
-				<i class="mdi-navigation-arrow-forward"></i>
+				<i class="fa fa-arrow-right"></i>
 				<div class="ripple-wrapper"></div>
 				</button>
 			</form>
@@ -83,6 +83,6 @@
 
 	<div id="workoutButtons" class="col-xs-12">
 		<button class="btn btn-primary btn-material-orange-600 workoutLowerButtons" ng-click="addItem()">ADD SET<div class="ripple-wrapper"></div></button>
-		<button class="btn btn-primary btn-material-red workoutLowerButtons" style="float: right">STOP WORKOUT!<div class="ripple-wrapper"></div></button>
+		<button class="btn btn-primary btn-material-red workoutLowerButtons" ng-click="stopWorkout()" style="float: right">STOP WORKOUT!<div class="ripple-wrapper"></div></button>
 	</div>
 </div>

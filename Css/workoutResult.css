@@ -1,0 +1,28 @@
+#workoutResultTime {
+	padding-top: 20px;
+}
+
+#workoutResultTime {
+	text-align: center;;
+	color: red;
+}
+
+#workoutResultTime > h5 {
+	color: black;
+}
+
+#workoutResultKgRep {
+	text-align: center;
+}
+
+#workoutResultSets {
+	text-align: center;
+}
+
+#workoutResultDetailedStat {
+	text-align: center;
+}
+
+#workoutResultSets {
+	display: none;
+}

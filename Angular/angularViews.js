@@ -8,15 +8,22 @@ var excerciseCounter = 0;
 var actualExcerciseID = 0;
 var currentlyViewedExcerciseID = 0;
 var excerciseContainer = [];
+var sessionTimerGlobal = "";
+var allKgs = 0;
+var allReps = 0;
+//----------------------------------------------------------
+//ANGULAR DIRECTIVES
 
 
+//----------------------------------------------------------
+//ANGULAR SERVICES
 workoutApp.service('excerciseService', function() {
 
 	var scopeList = [];
 
   var goForwardToExcercise = function(items) {
-	console.log("BEFORE excerciseCounter: " + excerciseCounter);
-	console.log("BEFORE currentlyViewedExcerciseID: " + currentlyViewedExcerciseID);
+	console.log("EXC: " + excerciseCounter);
+	console.log("CURR: " + currentlyViewedExcerciseID);
 	if( excerciseCounter == 0) {
 		startSessionTimer();
 		excerciseCounter = 1;
@@ -24,86 +31,132 @@ workoutApp.service('excerciseService', function() {
 	}
 	else {
 		//if the max excercise id is equal to the currently viewed, there is no more opened excercises
+		//CURR=1 and EXC=1 and next
 		if( excerciseCounter == currentlyViewedExcerciseID ) {
-			console.log("elso feltetel");
 			//save the current sets
-			excerciseContainer.push({
-				key: excerciseCounter,
-				value: items
-			});
+			var hasTheKey = _.has(excerciseContainer, excerciseCounter);
+
+			if(hasTheKey == false) {
+				console.log("ELSO FELTETEL");
+				excerciseContainer.push({
+					key: excerciseCounter,
+					value: items
+				});
+			}
+			else {
+				console.log("MASODIK FELTETEL");
+				var storedValues = excerciseContainer[currentlyViewedExcerciseID].value;
+				storedValues.push(items);
+				excerciseContainer.slice(excerciseCounter,1);
+				excerciseContainer.push({
+					key: excerciseCounter,
+					values: storedValues
+				});
+			}
 			scopeList = [];
 			excerciseCounter++;
-			currentlyViewedExcerciseID = excerciseCounter;
+			currentlyViewedExcerciseID++;
 
 		}
 		else if ( excerciseCounter > currentlyViewedExcerciseID ) {
-			console.log("masodik feltetel");
 			//save the current sets
-			excerciseContainer.push({
-				key: currentlyViewedExcerciseID,
-				value: items
-			});
+			var hasTheKey = _.has(excerciseContainer, excerciseCounter);
+			if(hasTheKey == false) {
+				console.log("HARMADIK FELTETEL");
+				excerciseContainer.push({
+					key: excerciseCounter,
+					value: items
+				});
+			}
+			else {
+				console.log("NEGYEDIK FELTETEL");
+				var storedValues = excerciseContainer[currentlyViewedExcerciseID].value;
+				console.log(storedValues);
+				storedValues.push(items);
+				excerciseContainer.slice(currentlyViewedExcerciseID,1);
+				excerciseContainer.push({
+					key: currentlyViewedExcerciseID,
+					values: storedValues
+				});
+			}
 			//load the already saved sets for the next excercise
 			scopeList = [];
 			scopeList = excerciseContainer[currentlyViewedExcerciseID].value;
 			currentlyViewedExcerciseID++;
 		}
 		else {
-			console.log("harmadik feltetel");
+			console.log("OTODIK FELTETEL");
 			//save the current sets
+			var storedValues = excerciseContainer[currentlyViewedExcerciseID].value;
+			storedValues.push(items);
+			excerciseContainer.slice(currentlyViewedExcerciseID,1);
 			excerciseContainer.push({
 				key: currentlyViewedExcerciseID,
-				value: items
+				values: storedValues
 			});
 			//load the already saved sets for the next excercise
 			scopeList = [];
-			scopeList = excerciseCounter[currentlyViewedExcerciseID+1];
+			scopeList = excerciseCounter[currentlyViewedExcerciseID+1].value;
 			currentlyViewedExcerciseID++;
 		}
 	}
-	console.log("AFTER excerciseCounter: " + excerciseCounter);
-	console.log("AFTER currentlyViewedExcerciseID: " + currentlyViewedExcerciseID);
-	for (var i = 0; i < excerciseContainer.length; i++) {
-	 console.log(excerciseContainer[i]);
-	};
   }
 
   var goBackToLastExcercise = function(items){
-  	console.log("BEFORE excerciseCounter: " + excerciseCounter);
-	console.log("BEFORE currentlyViewedExcerciseID: " + currentlyViewedExcerciseID);
-
-
 	if(excerciseCounter == 1 || excerciseCounter == 0 || currentlyViewedExcerciseID == 1) {
 
 	}
 	else {
-		excerciseContainer.push({
-			key: currentlyViewedExcerciseID,
-			value: items
-		});
+		var hasTheKey = _.has(excerciseContainer, excerciseCounter);
+		console.log("BACK ELSO FELTETEL");
+		if(hasTheKey == false) {
+			excerciseContainer.push({
+				key: excerciseCounter,
+				value: items
+			});
+		}
+		else {
+			console.log("BACK MASODIK FELTETEL");
+			var storedValues = excerciseContainer[currentlyViewedExcerciseID-1].value;
+			storedValues.push(items);
+			excerciseContainer.slice(currentlyViewedExcerciseID,1);
+			excerciseContainer.push({
+				key: currentlyViewedExcerciseID,
+				values: storedValues
+			});
+		}
 		scopeList = [];
 		scopeList = excerciseContainer[currentlyViewedExcerciseID - 2].value;
 		currentlyViewedExcerciseID--;
 	}
-	console.log("AFTER excerciseCounter: " + excerciseCounter);
-	console.log("AFTER currentlyViewedExcerciseID: " + currentlyViewedExcerciseID);
-	for (var i = 0; i < excerciseContainer.length; i++) {
-	 	console.log(excerciseContainer[i]);
-	};
-
   }
 
   var getScopeList = function () {
   	return scopeList;
   }
 
+  var getSessionTime = function () {
+  	return $('#sessionTimeH5').text();
+  }
+
   return {
     goForwardToExcercise: goForwardToExcercise,
     goBackToLastExcercise: goBackToLastExcercise,
-    getScopeList: getScopeList
+    getScopeList: getScopeList,
+    getSessionTime: getSessionTime
   };
 
 });
+
+
+//----------------------------------------------------------
+//ANGULAR FILTERS
+workoutApp.filter('split', function() {
+        return function(input, splitChar, splitIndex) {
+            // do some bounds checking here to ensure it has that index
+            return input.split(splitChar)[splitIndex];
+        }
+    });
 
 //----------------------------------------------------------
 //ANGULAR CONTROLLERS
@@ -111,10 +164,15 @@ workoutApp.controller('mainController', function ($scope) {
 	$scope.workoutChooser = "Chose your workout type";
 });
 
-workoutApp.controller("workout01Controller", function ($scope, excerciseService) {
+
+workoutApp.controller("workout01Controller", function ($scope, $location, excerciseService) {
 
 	$scope.excerciseId = currentlyViewedExcerciseID;
 	$scope.items = [];
+	$scope.workoutResult = excerciseContainer;
+	$scope.sessionTime = sessionTimerGlobal;
+	$scope.allKgs = allKgs;
+	$scope.allReps = allReps;
 	$scope.items = excerciseService.getScopeList();
 
 	$scope.goForwardToExcercise = function () {
@@ -123,74 +181,57 @@ workoutApp.controller("workout01Controller", function ($scope, excerciseService)
 
 	$scope.goBackToLastExcercise = function () {
 		$scope.items = excerciseService.goBackToLastExcercise($scope.items);
+		//$('#workoutTypeText').val($scope.items);
 	};	
 
-	// $scope.goForwardToExcercise = function () {
-	// 	console.log("BEFORE excerciseCounter: " + excerciseCounter);
-	// 	console.log("BEFORE currentlyViewedExcerciseID: " + currentlyViewedExcerciseID);
-	// 	if( excerciseCounter == 0) {
-	// 		startSessionTimer();
-	// 		excerciseCounter = 1;
-	// 		currentlyViewedExcerciseID = 1;
-	// 	}
-	// 	else {
-	// 		//if the max excercise id is equal to the currently viewed, there is no more opened excercises
-	// 		if( excerciseCounter == currentlyViewedExcerciseID ) {
-	// 			//save the current sets
-	// 			excerciseContainer.push({
-	// 				key: excerciseCounter,
-	// 				value: $scope.items
-	// 			});
-	// 			$scope.items = [];
-	// 			excerciseCounter++;
-	// 			currentlyViewedExcerciseID = excerciseCounter;
-
-	// 		}
-	// 		else {
-	// 			//save the current sets
-	// 			excerciseContainer.push({
-	// 				key: currentlyViewedExcerciseID,
-	// 				value: $scope.items
-	// 			});
-	// 			//load the already saved sets for the next excercise
-	// 			$scope.items = [];
-	// 			$scope.items.push(excerciseCounter[currentlyViewedExcerciseID+1]);
-	// 			currentlyViewedExcerciseID++;
-	// 		}
-	// 	}
-	// 	console.log("AFTER excerciseCounter: " + excerciseCounter);
-	// 	console.log("AFTER currentlyViewedExcerciseID: " + currentlyViewedExcerciseID);
-	// 	for (var i = 0; i < excerciseContainer.length; i++) {
-	// 	 console.log(excerciseContainer[i]);
-	// 	};
-	// }
-
-	// $scope.goBackToLastExcercise = function () {
-	// 	console.log("BEFORE excerciseCounter: " + excerciseCounter);
-	// 	console.log("BEFORE currentlyViewedExcerciseID: " + currentlyViewedExcerciseID);
+	$scope.stopWorkout = function () {
+		if (confirm('Your workout will be stopped and saved! Do you agree?')) {
+		  sessionTimerGlobal = excerciseService.getSessionTime();
+			//SAVE THE DATA OF THE ACTUAL PAGE
+			var hasTheKey = _.has(excerciseContainer, excerciseCounter);
+			if(hasTheKey == false) {
+				excerciseContainer.push({
+					key: excerciseCounter,
+					value: $scope.items
+				});
+			}
+			else {
+				var storedValues = excerciseContainer[currentlyViewedExcerciseID-1].value;
+				storedValues.push($scope.items);
+				excerciseContainer.slice(currentlyViewedExcerciseID,1);
+				excerciseContainer.push({
+					key: currentlyViewedExcerciseID,
+					values: storedValues
+				});
+			}
 
 
-	// 	if(excerciseCounter == 1 || excerciseCounter == 0 || currentlyViewedExcerciseID == 1) {
+    		for (var i = 0; i < excerciseContainer.length; i++) {
+    			console.log(excerciseContainer[i]);
+    		};
 
-	// 	}
-	// 	else {
-	// 		excerciseContainer.push({
-	// 			key: currentlyViewedExcerciseID,
-	// 			value: $scope.items
-	// 		});
-	// 		for (var i = 0; i < $scope.items.length; i++) {
-	// 			console.log($scope.items[i]);
-	// 		};
-	// 		//$scope.items = [];
-	// 		$scope.items = excerciseContainer[currentlyViewedExcerciseID - 2].value;
-	// 		currentlyViewedExcerciseID--;
-	// 	}
-	// 	console.log("AFTER excerciseCounter: " + excerciseCounter);
-	// 	console.log("AFTER currentlyViewedExcerciseID: " + currentlyViewedExcerciseID);
-	// 	for (var i = 0; i < excerciseContainer.length; i++) {
-	// 	 	console.log(excerciseContainer[i]);
-	// 	};
-	// }
+    		for (var i = 0; i < excerciseContainer.length; i++) {
+    			for(var j in excerciseContainer[i]) {
+    				console.log(excerciseContainer[i][j]);
+    				for(var k = 0; k < excerciseContainer[i][j].length; k++) {
+    					allKgs = allKgs + parseInt(excerciseContainer[i][j][k].kgs);
+    					allReps = allReps + parseInt(excerciseContainer[i][j][k].reps);
+    					console.log('All kgs:' + allKgs);
+    				}
+    			}
+    		};
+
+    		//redirect to result page
+    	
+		  $location.path('/workoutresult'); 
+  		  $scope.workoutResult = excerciseContainer;
+
+		  //$scope = $scope || angular.element(document).scope();
+
+		} else {
+		    // Do nothing!
+		}
+	};
 
 	var setId = 1;
 
@@ -202,8 +243,9 @@ workoutApp.controller("workout01Controller", function ($scope, excerciseService)
 
         $scope.items.push({
         	setId: setId,
-        	kgs: $('#setRepH4').val(),
-        	reps: $('#setKgH4').val()
+        	kgs: $('#setKgH4').val(),
+        	reps: $('#setRepH4').val(),
+        	type: $('#workoutTypeText').val()
             // kgs: $scope.newRep,
             // reps: $scope.newKg
         });
@@ -271,6 +313,10 @@ $routeProvider
     })
     .when('/workout01', {
         templateUrl : '../views/workout01.html',
+        controller  : 'workout01Controller'
+    })
+    .when('/workoutresult', {
+        templateUrl : '../views/workoutresult.html',
         controller  : 'workout01Controller'
     });
 });

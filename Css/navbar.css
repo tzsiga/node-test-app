@@ -1,0 +1,17 @@
+.navbar {
+	min-height: 20px;
+	text-align: center;
+	padding: 0px;
+	margin-bottom: 0px;	
+	box-shadow: 0px 7px 6px #888888;
+}
+
+.navbar-header {
+	text-align: center;
+	/*background-color: #6EFF4C;*/
+}
+
+.navbar-brand {
+	padding: 4px;
+	height: 30px;
+}

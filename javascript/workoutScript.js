@@ -33,7 +33,7 @@ function startSessionTimer () {
     //     seconds = 0; minutes = 0; hours = 0;
     // }
 
-};
+}
 
 
 function workoutSetsSizer () {
@@ -41,4 +41,19 @@ function workoutSetsSizer () {
     var body = $("#workout01Sets");
     body.css("max-height", windowHeight/3.7);
     console.log(windowHeight);
+}
+
+var isDetailedStatsShowed = false;
+function showDetailedStats() {
+    console.log("belepett");
+    if(isDetailedStatsShowed === false) {
+        document.getElementById("workoutResultSets").style.display = "inline";
+        
+        isDetailedStatsShowed = true;
+    }
+    else {
+       document.getElementById("workoutResultSets").style.display = "none"; 
+       isDetailedStatsShowed = false;
+    }
+
 }
