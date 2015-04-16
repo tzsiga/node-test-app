@@ -9,3 +9,14 @@ workoutApp.controller('calculatorController', function ($scope) {
 
 	$scope.defaultCalorieIntake = 10 * kg + 6.25 * height - 5 * age + 5;
 });
+
+window.name = "NG_DEFER_BOOTSTRAP!";
+
+/* require config here */
+
+requirejs(['jquery','underscore','angularjs'], function ($, _ ) {
+/* create angular app here */
+ angular.element(document).ready(function () {
+  angular.resumeBootstrap();
+ });
+}
