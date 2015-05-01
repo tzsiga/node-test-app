@@ -1,3 +1,7 @@
+#footerNav {
+	box-shadow: 0px -2px 1px #000000;
+}
+
 .footerElement {
 	display: inline-block;
 	border: 0px solid;
@@ -7,15 +11,6 @@
 	max-width: 20%;
 	/*background: #6EFF4C;*/
 }
-
-/*.col-xs-3.footerElement {
-	border: 0px solid;
-	border-color: gray;
-	padding: 0px;
-	text-align: center;
-	/*background: #6EFF4C;*/
-} */
-
 
 #footerNav > div > div:nth-child(1) > a {
 	padding-top: 6px;
