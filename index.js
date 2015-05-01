@@ -14,6 +14,7 @@ app.use('/fonts', express.static(__dirname + '/fonts'));
 app.use('/Images', express.static(__dirname + '/Images'));
 app.use('/Angular', express.static(__dirname + '/Angular'));
 app.use('/views', express.static(__dirname + '/views'));
+app.use('/models', express.static(__dirname + '/models'));
 
 app.get('/', function (req, res) {
   res.redirect('/main');

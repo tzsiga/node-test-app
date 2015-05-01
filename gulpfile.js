@@ -14,7 +14,11 @@ gulp.task('scripts', function() {
     				'bower_components/angular-route/angular-route.js',
     				'bower_components/lodash/lodash.min.js',
     				'javascript/*.js',
-    				'Angular/angularViews.js'
+                    'routing/routing.js',
+                    'models/*.js',
+                    'service/*.js',
+                    'filters/*.js',
+    				'controllers/*.js'                          
     				])
         .pipe(concat('all.js'))
         .pipe(gulp.dest('dist'));

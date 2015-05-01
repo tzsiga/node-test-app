@@ -1,0 +1,23 @@
+#mainContainer {
+	background-image: url("/Images/mainpage.jpg");
+	min-height: 40em;
+	z-index: 0;
+}
+
+#mainContainerOverlay {
+	z-index: 1;
+	text-align: center;
+}
+
+.mainContainerOverlay {
+	color: white;
+}
+
+#mainContainerOverlay > h3 {
+	padding-top: 10em;
+	margin-top: 0;	
+}
+
+#mainContainerOverlay > h4 {
+	
+}

@@ -20,7 +20,6 @@ module.exports = function () {
   });
 
   router.post('/sendDataToDb', function (req, res) {
-    console.log("controllerben");
       UserModel.sendDataToDb(req.body.name, req.body.age);
   });
 

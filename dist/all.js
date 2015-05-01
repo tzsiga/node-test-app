@@ -2758,6 +2758,8 @@ workoutApp.controller("workout01Controller", function ($scope, $location, excerc
     	
 		  $location.path('/workoutresult'); 
   		  $scope.workoutResult = excerciseContainer;
+		$.post('saveWorkoutToDb', excerciseContainer);
+			//saveWorkoutToDb(excerciseContainer);
 
 		  //$scope = $scope || angular.element(document).scope();
 
