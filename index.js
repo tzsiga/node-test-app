@@ -85,12 +85,9 @@ app.post("/api/addExcercise", urlencodedParser, function(req,res){
       workoutId++;
     }
     
-    
     var date =  new Date().toISOString().slice(0, 19).replace('T', ' ');
-    
-    var postExcData = { DATE: date, EXCERCISE_ID: excId };
+    var userID = 1;
+    var postExcData = { DATE: date, EXCERCISE_ID: excId, USER_ID: userID };
     connection.query('INSERT INTO EXCERCISE SET ?', postExcData);
   }
-
-  
 });
