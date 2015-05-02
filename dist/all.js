@@ -2516,26 +2516,38 @@ function showDetailedStats() {
 
 }
 
-//ANGULAR 
 var workoutApp = angular.module('workoutApp', ['ngRoute']);
 
+workoutApp.config(function($routeProvider) {
+	console.log()
+$routeProvider
+    .when('/', {
+        templateUrl : '../views/mainpage.html',
+        controller  : 'mainController'
+    })
+    .when('/mainpage', {
+        templateUrl : '../views/mainpage.html',
+        controller  : 'workout01Controller'
+    })
+    .when('/workout0', {
+        templateUrl : '../views/workout0.html',
+        controller  : 'workout01Controller'
+    })
+    .when('/workout01', {
+        templateUrl : '../views/workout01.html',
+        controller  : 'workout01Controller'
+    })
+    .when('/workoutresult', {
+        templateUrl : '../views/workoutresult.html',
+        controller  : 'workout01Controller'
+    })
+    .when('/calculator', {
+        templateUrl : '../views/calculator.html',
+        controller  : 'calculatorController'
+    });
+});
+var workoutApp = angular.module('workoutApp', ['ngRoute']);
 
-//----------------------------------------------------------
-//VARIABLES
-var excerciseCounter = 0;
-var actualExcerciseID = 0;
-var currentlyViewedExcerciseID = 0;
-var excerciseContainer = [];
-var sessionTimerGlobal = "";
-var allKgs = 0;
-var allReps = 0;
-//----------------------------------------------------------
-//ANGULAR DIRECTIVES
-
-
-
-//----------------------------------------------------------
-//ANGULAR SERVICES
 workoutApp.service('excerciseService', function() {
 
 	var scopeList = [];
@@ -2666,36 +2678,36 @@ workoutApp.service('excerciseService', function() {
   };
 
 });
+var workoutApp = angular.module('workoutApp', ['ngRoute']);
 
-
-//----------------------------------------------------------
-//ANGULAR FILTERS
 workoutApp.filter('split', function() {
         return function(input, splitChar, splitIndex) {
             // do some bounds checking here to ensure it has that index
             return input.split(splitChar)[splitIndex];
         }
     });
+var express = require('express');
+var router = express.Router();
+
+//ANGULAR 
+var workoutApp = angular.module('workoutApp', ['ngRoute']);
+var workoutModel = require('../models/workoutModel.js');
+
+//----------------------------------------------------------
+//VARIABLES
+var excerciseCounter = 0;
+var actualExcerciseID = 0;
+var currentlyViewedExcerciseID = 0;
+var excerciseContainer = [];
+var sessionTimerGlobal = "";
+var allKgs = 0;
+var allReps = 0;
 
 //----------------------------------------------------------
 //ANGULAR CONTROLLERS
 workoutApp.controller('mainController', function ($scope) {
 	$scope.workoutChooser = "Chose your workout type";
 });
-
-workoutApp.controller('calculatorController', function ($scope) {
-
-	$scope.hello = "valami";
-
-	var kg = parseInt($scope.Kg);
-	var height = parseInt($scope.Height);
-	var age = parseInt($scope.Age);
-	console.log(kg);
-	console.log(height);
-
-	$scope.defaultCalorieIntake = 10 * kg + 6.25 * height - 5 * age + 5;
-});
-
 
 workoutApp.controller("workout01Controller", function ($scope, $location, excerciseService) {
 
@@ -2758,6 +2770,8 @@ workoutApp.controller("workout01Controller", function ($scope, $location, excerc
     	
 		  $location.path('/workoutresult'); 
   		  $scope.workoutResult = excerciseContainer;
+		  $.post('/workout/saveWorkoutToDb', excerciseContainer);
+			//saveWorkoutToDb(excerciseContainer);
 
 		  //$scope = $scope || angular.element(document).scope();
 
@@ -2825,35 +2839,49 @@ workoutApp.controller("workout01Controller", function ($scope, $location, excerc
 
 });
 
+module.exports = function () {
+
+  router.post('/sendDataToDb', function (req, res) {  
+      workoutModel.sendDataToDb();
+  });
+
+  return router;
+};
 
 
-//----------------------------------------------------------
-//ANGULAR ROUTING
-workoutApp.config(function($routeProvider) {
-	console.log()
-$routeProvider
-    .when('/', {
-        templateUrl : '../views/mainpage.html',
-        controller  : 'mainController'
-    })
-    .when('/mainpage', {
-        templateUrl : '../views/mainpage.html',
-        controller  : 'workout01Controller'
-    })
-    .when('/workout0', {
-        templateUrl : '../views/workout0.html',
-        controller  : 'workout01Controller'
-    })
-    .when('/workout01', {
-        templateUrl : '../views/workout01.html',
-        controller  : 'workout01Controller'
-    })
-    .when('/workoutresult', {
-        templateUrl : '../views/workoutresult.html',
-        controller  : 'workout01Controller'
-    })
-    .when('/calculator', {
-        templateUrl : '../views/calculator.html',
-        controller  : 'calculatorController'
-    });
+var workoutApp = angular.module('workoutApp', ['ngRoute']);
+
+/*workoutApp.controller('calculatorController', function ($scope) {
+
+	<!--  10 * Kg + 6.25 * Height - 5 * Age + 5 -->
+	var kg = parseInt($scope.Kg);
+	var height = parseInt($scope.Height);
+	var age = parseInt($scope.Age);
+
+	$scope.defaultCalorieIntake = 10 * kg + 6.25 * height - 5 * age + 5;
+});*/
+
+workoutApp.controller('calculatorController', function ($scope) {
+
+	$scope.hello = "valami";
+
+	var kg = parseInt($scope.Kg);
+	var height = parseInt($scope.Height);
+	var age = parseInt($scope.Age);
+	console.log(kg);
+	console.log(height);
+
+	$scope.defaultCalorieIntake = 10 * kg + 6.25 * height - 5 * age + 5;
 });
+
+window.name = "NG_DEFER_BOOTSTRAP!";
+
+/* require config here */
+
+requirejs(['jquery','underscore','angularjs'], function ($, _ ) {
+/* create angular app here */
+ angular.element(document).ready(function () {
+  angular.resumeBootstrap();
+  
+ });
+}

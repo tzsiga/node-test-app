@@ -53,6 +53,10 @@
 	height		: 300px;
 	font-size	: 11px;
 }
+#footerNav {
+	box-shadow: 0px -2px 1px #000000;
+}
+
 .footerElement {
 	display: inline-block;
 	border: 0px solid;
@@ -62,15 +66,6 @@
 	max-width: 20%;
 	/*background: #6EFF4C;*/
 }
-
-/*.col-xs-3.footerElement {
-	border: 0px solid;
-	border-color: gray;
-	padding: 0px;
-	text-align: center;
-	/*background: #6EFF4C;*/
-} */
-
 
 #footerNav > div > div:nth-child(1) > a {
 	padding-top: 6px;
@@ -142,12 +137,35 @@ div#ng-viewDiv.ng-scope {
 
 
 
+#mainContainer {
+	background-image: url("/Images/mainpage.jpg");
+	min-height: 40em;
+	z-index: 0;
+}
+
+#mainContainerOverlay {
+	z-index: 1;
+	text-align: center;
+}
+
+.mainContainerOverlay {
+	color: white;
+}
+
+#mainContainerOverlay > h3 {
+	padding-top: 10em;
+	margin-top: 0;	
+}
+
+#mainContainerOverlay > h4 {
+	
+}
 .navbar {
 	min-height: 20px;
 	text-align: center;
 	padding: 0px;
 	margin-bottom: 0px;	
-	box-shadow: 0px 7px 6px #888888;
+	box-shadow: 0px 2px 1px #000000;
 }
 
 .navbar-header {
