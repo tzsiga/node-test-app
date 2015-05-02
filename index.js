@@ -70,11 +70,24 @@ app.get("/api/getAllExcercise",function(req,res){
 app.post("/api/addExcercise", urlencodedParser, function(req,res){
   if (!req.body) return res.sendStatus(400);
   else {
-    console.log(req.body.name);
+    var excId = Math.floor((Math.random() * 100000) + 1);
+    
+    for(var i = 1; i < req.body.workout.length; i+=2) {
+      var workoutId = 1;
+      for(var j = 0; j < req.body.workout[i].length; j++) {
+        console.log("az i erteke: " + i + " a j erteke: " + j);
+        var kg = req.body.workout[i][j].kg;
+        var rep = req.body.workout[i][j].rep;
+        var lapCounter = j + 1;
+        var lapData = { EXCERCISE_ID: excId, WORKOUT_ID: workoutId, KG: kg, REPS: rep, LAP: lapCounter };
+        connection.query('INSERT INTO SESSION SET ?', lapData);
+      }
+      workoutId++;
+    }
+    
     
     var date =  new Date().toISOString().slice(0, 19).replace('T', ' ');
     
-    var excId = Math.floor((Math.random() * 100000) + 1);
     var postExcData = { DATE: date, EXCERCISE_ID: excId };
     connection.query('INSERT INTO EXCERCISE SET ?', postExcData);
   }

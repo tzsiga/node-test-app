@@ -95,7 +95,7 @@ workoutApp.controller("workout01Controller", function ($scope, $location, $http,
 		  $location.path('/workoutresult'); 
   		  $scope.workoutResult = excerciseContainer;
 			
-			var testData = { name: 'balazs' };
+			var testData = { workout: workout };
 		  $http.post("/api/addExcercise", JSON.stringify(testData))
 		  .error( function(error) {
 			 console.log("error: " + error); 
