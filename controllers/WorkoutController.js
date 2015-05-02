@@ -69,15 +69,24 @@ workoutApp.controller("workout01Controller", function ($scope, $location, $http,
     		for (var i = 0; i < excerciseContainer.length; i++) {
     			console.log(excerciseContainer[i]);
     		};
+			
+			var workout = [];
 
     		for (var i = 0; i < excerciseContainer.length; i++) {
     			for(var j in excerciseContainer[i]) {
     				console.log(excerciseContainer[i][j]);
+					var laps = [];
     				for(var k = 0; k < excerciseContainer[i][j].length; k++) {
+						var lap = {};
     					allKgs = allKgs + parseInt(excerciseContainer[i][j][k].kgs);
     					allReps = allReps + parseInt(excerciseContainer[i][j][k].reps);
+						
+						lap.rep = parseInt(excerciseContainer[i][j][k].reps);
+						lap.kg = parseInt(excerciseContainer[i][j][k].kgs);
+						laps.push(lap);
     					console.log('All kgs:' + allKgs);
     				}
+					workout.push(laps);
     			}
     		};
 
@@ -85,7 +94,9 @@ workoutApp.controller("workout01Controller", function ($scope, $location, $http,
     	
 		  $location.path('/workoutresult'); 
   		  $scope.workoutResult = excerciseContainer;
-		  $http.post("/api/addExcercise", excerciseContainer)
+			
+			var testData = { name: 'balazs' };
+		  $http.post("/api/addExcercise", JSON.stringify(testData))
 		  .error( function(error) {
 			 console.log("error: " + error); 
 		  });

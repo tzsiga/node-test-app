@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 app.listen(process.env.PORT || 3000);
 
 // TO PARSE REQ CONTENT DURING POST
-app.use(bodyParser.urlencoded({ extended: false }));
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
@@ -28,6 +28,8 @@ app.use('/models', express.static(__dirname + '/models'));
 
 var UserController = require('./controllers/MainController.js');
 app.use('/main', UserController());
+
+app.use(bodyParser.json())
 
 
 // DATABASE TESTING
@@ -65,12 +67,17 @@ app.get("/api/getAllExcercise",function(req,res){
     });
 });
 
-app.post("/api/addExcercise",function(req,res){
-  
-  var date =  new Date().toISOString().slice(0, 19).replace('T', ' ');
-  
-  var excId = Math.floor((Math.random() * 100000) + 1);
-  var postExcData = { DATE: date, EXCERCISE_ID: excId };
-  connection.query('INSERT INTO EXCERCISE SET ?', postExcData);
+app.post("/api/addExcercise", urlencodedParser, function(req,res){
+  if (!req.body) return res.sendStatus(400);
+  else {
+    console.log(req.body.name);
+    
+    var date =  new Date().toISOString().slice(0, 19).replace('T', ' ');
+    
+    var excId = Math.floor((Math.random() * 100000) + 1);
+    var postExcData = { DATE: date, EXCERCISE_ID: excId };
+    connection.query('INSERT INTO EXCERCISE SET ?', postExcData);
+  }
+
   
 });
