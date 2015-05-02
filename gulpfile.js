@@ -17,6 +17,7 @@ gulp.task('scripts', function() {
                     'service/*.js',
                     'filters/*.js',
     				'controllers/WorkoutController.js',
+                    'controllers/calendarController.js',
                     'routing/*.js'                 
     				])
         .pipe(concat('all.js'))

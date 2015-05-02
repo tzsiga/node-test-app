@@ -46,44 +46,31 @@ connection.connect(function(err){
   }
 });
 
-app.get("/api/getData",function(req,res){
-  connection.query('SELECT * from EXCERCISE', function(err, rows, fields) {
-  connection.end();
-    if (!err)
+app.get("/api/getAllExcercise",function(req,res){
+  var query = connection.query('SELECT * from EXCERCISE', function(err, rows, fields) {
+
+  var results = [];
+  results.push(rows);
+    
+    query.on('end', function() {
+        connection.end();
+        return res.json(results);
+    });
+    
+    if (!err) {
       console.log('The solution is: ', rows);
+    }
     else
       console.log('Error while performing Query.');
     });
 });
 
-
-/*var connectionString = process.env.DATABASE_URL || 'mysql://localhost:3306/GYM';
-router.get('/api/allData', function(req, res) {
-
-    var results = [];
-
-    // Get a mysql client from the connection pool
-    mysql.connect(connectionString, function(err, client, done) {
-
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM EXCERCISE");
-
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            client.end();
-            return res.json(results);
-        });
-
-        // Handle Errors
-        if(err) {
-          console.log(err);
-        }
-
-    });
-
-});*/
+app.post("/api/addExcercise",function(req,res){
+  
+  var date =  new Date().toISOString().slice(0, 19).replace('T', ' ');
+  
+  var excId = Math.floor((Math.random() * 100000) + 1);
+  var postExcData = { DATE: date, EXCERCISE_ID: excId };
+  connection.query('INSERT INTO EXCERCISE SET ?', postExcData);
+  
+});

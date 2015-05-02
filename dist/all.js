@@ -2516,14 +2516,7 @@ function showDetailedStats() {
 
 }
 
-var workoutApp = angular.module('workoutApp', ['ngRoute']);
 
-workoutApp.filter('split', function() {
-        return function(input, splitChar, splitIndex) {
-            // do some bounds checking here to ensure it has that index
-            return input.split(splitChar)[splitIndex];
-        }
-    });
 //ANGULAR 
 var workoutApp = angular.module('workoutApp', ['ngRoute']);
 
@@ -2537,13 +2530,20 @@ var sessionTimerGlobal = "";
 var allKgs = 0;
 var allReps = 0;
 
+workoutApp.filter('split', function() {
+        return function(input, splitChar, splitIndex) {
+            // do some bounds checking here to ensure it has that index
+            return input.split(splitChar)[splitIndex];
+        }
+    });
+
 //----------------------------------------------------------
 //ANGULAR CONTROLLERS
 workoutApp.controller('mainController', function ($scope) {
 	$scope.workoutChooser = "Chose your workout type";
 });
 
-workoutApp.controller("workout01Controller", function ($scope, $location, excerciseService) {
+workoutApp.controller("workout01Controller", function ($scope, $location, $http, excerciseService) {
 
 	$scope.excerciseId = currentlyViewedExcerciseID;
 	$scope.items = [];
@@ -2604,8 +2604,11 @@ workoutApp.controller("workout01Controller", function ($scope, $location, excerc
     	
 		  $location.path('/workoutresult'); 
   		  $scope.workoutResult = excerciseContainer;
-		  //$.post('/workout/saveWorkoutToDb', excerciseContainer);
-			//saveWorkoutToDb(excerciseContainer);
+		  $http.post("/api/addExcercise", excerciseContainer)
+		  .error( function(error) {
+			 console.log("error: " + error); 
+		  });
+		  
 
 		  //$scope = $scope || angular.element(document).scope();
 
@@ -2699,6 +2702,10 @@ $routeProvider
     })
     .when('/calculator', {
         templateUrl : '../views/calculator.html'
+    })
+	.when('/calendar', {
+        templateUrl : '../views/calendar.html',
+		controller : 'calendarController'
     });
 });
 
@@ -2833,3 +2840,7 @@ workoutApp.service('excerciseService', function() {
 
 });
 
+
+workoutApp.controller('calendarController', function ($scope) {
+	$scope.message = "hello from calendarcontroller";
+});
