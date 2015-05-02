@@ -14,11 +14,10 @@ gulp.task('scripts', function() {
     				'bower_components/angular-route/angular-route.js',
     				'bower_components/lodash/lodash.min.js',
     				'javascript/*.js',
-                    'routing/routing.js',
-                    'models/*.js',
                     'service/*.js',
                     'filters/*.js',
-    				'controllers/*.js'                          
+    				'controllers/WorkoutController.js',
+                    'routing/*.js'                 
     				])
         .pipe(concat('all.js'))
         .pipe(gulp.dest('dist'));
@@ -51,7 +50,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('Angular/*.js', ['scripts']);
+    gulp.watch('controllers/*.js', ['scripts']);
     gulp.watch('javascript/*.js', ['scripts']);
     gulp.watch('Css/*.css', ['css']);
 });

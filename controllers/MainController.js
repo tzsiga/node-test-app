@@ -2,8 +2,6 @@
 var express = require('express');
 var router = express.Router();
 
-var UserModel = require('../models/MainModel.js');
-
 module.exports = function () {
 
   // view response
