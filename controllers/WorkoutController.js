@@ -172,8 +172,7 @@ $routeProvider
         controller  : 'workout01Controller'
     })
     .when('/calculator', {
-        templateUrl : '../views/calculator.html',
-        controller  : 'calculatorController'
+        templateUrl : '../views/calculator.html'
     });
 });
 
