@@ -1,4 +1,3 @@
-var Promise = require('bluebird');
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
