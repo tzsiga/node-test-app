@@ -1,37 +1,96 @@
 <div ng-controller="calendarController">
-	
-	<h4>{{ message }}</h4>
 	<div id="datepicker-container" class="col-xs-12">
 		<div id="datepicker"></div>
 	</div>
-	<div id="calendarResultContainer">
-		<p id="resultp"></p>
+	<div id="calendarResultContainer" class="col-xs-12">
+		<table class="table table-striped table-condensed" id="calendarResultTable">
+			<thead>
+				<tr>
+					<td>LAP</td>
+					<td>KG X REP</td>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
 	</div>
 
 
 </div>
 <script>
 		$(function($) {
-		  var dates = {
-		    '2015/5/4': 'some description',
-		    '2015/5/6': 'some other description'
-		  };
+		  
+		  var result = {};
+		  var valuesArray = [];
+		  
+		  var getDataFromDb = $.getJSON('/api/getAllExcercise', function(data) {
+			  console.log(data.length);
+
+			  for(var i = 0; i < data.length; i++) {
+				  var array = data[i];
+				  for(var j = 0; j < array.length; j++) {
+					  var date = array[j].DATE;
+					  var date2 = date.toString().substring(0,10);		  
+					  var find = '-';
+					  var re = new RegExp(find, 'g');
+					  date = date2.replace(re, '/')					  
+					  var dateSecondHalf = date.substring(5, date.length);
+					  find = '0';
+					  re = null;
+					  re = new RegExp(find, 'g');
+					  dateSecondHalf = dateSecondHalf.replace(re, '');
+					  date = date.substring(0,4);
+					  date += '/' + dateSecondHalf;
+					  var kg = array[j].KG;
+					  var rep = array[j].REPS;
+					  var lap = array[j].LAP;
+					  
+					  var params = [];
+					  params.push(lap);
+					  params.push(kg);
+					  params.push(rep);
+					  
+					  valuesArray.push(params);	
+					  result[date] = valuesArray;			  
+				  }
+			  }
+			  
+			  
+	  		  $('#datepicker').datepicker({
+				dateFormat: 'yy/m/d',
+				onSelect: function(date) {
+
+					for(var i = 0; i < result[date].length; i++) {
+						var lap = 0;
+						var kg = 0;
+						var rep = 0;
+						for(var j = 0; j < result[date][i].length; j++) {
+							if(j == 0) lap = result[date][i][j];
+							if(j == 1) kg = result[date][i][j];
+							if(j == 2) rep = result[date][i][j];
+						}
+						$('#calendarResultTable').find('tbody').
+						append('<tr><td>' + lap + '</td><td>' + kg + ' x ' + lap + '</td></tr>');
+					}
+
+					
+					
+					//$('#resultp').text(result[date]);
+		        	console.log("date is clicked " + result); },
+			    beforeShowDay: function(date) {
+			      var search = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+			
+			      if (search in result) {
+			        return [true, 'highlight'];
+			      }
+			
+			      return [false, ''];
+			    }
+			  });
+	    });
 		
-		  $('#datepicker').datepicker({
-			dateFormat: 'yy/m/d',
-			onSelect: function(date) {
-				$('#resultp').text(dates[date]);
-	        	console.log("date is clicked " + dates); },
-		    beforeShowDay: function(date) {
-		      var search = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
-		
-		      if (search in dates) {
-		        return [true, 'highlight', (dates[search] || '')];
-		      }
-		
-		      return [false, '', ''];
-		    }
-		  });
+
 		});
 
 		
