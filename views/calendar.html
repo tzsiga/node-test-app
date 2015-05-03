@@ -1,4 +1,38 @@
 <div ng-controller="calendarController">
 	
 	<h4>{{ message }}</h4>
+	<div id="datepicker-container" class="col-xs-12">
+		<div id="datepicker"></div>
+	</div>
+	<div id="calendarResultContainer">
+		<p id="resultp"></p>
+	</div>
+
+
 </div>
+<script>
+		$(function($) {
+		  var dates = {
+		    '2015/5/4': 'some description',
+		    '2015/5/6': 'some other description'
+		  };
+		
+		  $('#datepicker').datepicker({
+			dateFormat: 'yy/m/d',
+			onSelect: function(date) {
+				$('#resultp').text(dates[date]);
+	        	console.log("date is clicked " + dates); },
+		    beforeShowDay: function(date) {
+		      var search = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+		
+		      if (search in dates) {
+		        return [true, 'highlight', (dates[search] || '')];
+		      }
+		
+		      return [false, '', ''];
+		    }
+		  });
+		});
+
+		
+</script>

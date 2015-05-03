@@ -49,7 +49,7 @@ connection.connect(function(err){
 });
 
 app.get("/api/getAllExcercise",function(req,res){
-  var query = connection.query('SELECT * from EXCERCISE', function(err, rows, fields) {
+  var query = connection.query('SELECT DATE, WORKOUT_ID, KG, REPS, LAP FROM EXCERCISE, SESSION', function(err, rows, fields) {
 
   var results = [];
   results.push(rows);
@@ -89,5 +89,9 @@ app.post("/api/addExcercise", urlencodedParser, function(req,res){
     var userID = 1;
     var postExcData = { DATE: date, EXCERCISE_ID: excId, USER_ID: userID };
     connection.query('INSERT INTO EXCERCISE SET ?', postExcData);
+    connection.end();
   }
 });
+
+
+
