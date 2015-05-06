@@ -12515,7 +12515,10 @@ $routeProvider
 	.when('/calendar', {
         templateUrl : '../views/calendar.html',
 		controller : 'calendarController'
-    });
+    })
+	.when('/profile', {
+        templateUrl : '../views/profile.html',
+    });;
 });
 
 workoutApp.service('excerciseService', function() {

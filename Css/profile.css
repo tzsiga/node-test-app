@@ -1,0 +1,16 @@
+#profileContainer {
+	background-image: url("/Images/profileback.png");
+	min-height: 40em;
+	text-align: center;
+}
+
+#profileAvatarContainer {
+	padding-top: 3em;
+	margin: 0 auto;
+	display: inline-block;
+	color: white;
+}
+
+#avatarImg {
+	max-width: 50%;
+}
